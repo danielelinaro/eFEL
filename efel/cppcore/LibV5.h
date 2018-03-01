@@ -231,5 +231,8 @@ int sag_ratio1(mapStr2intVec& IntFeatureData,
 int sag_ratio2(mapStr2intVec& IntFeatureData,                                    
                        mapStr2doubleVec& DoubleFeatureData, 
                        mapStr2Str& StringData); 
+int ADP_indices(mapStr2intVec& IntFeatureData,
+                       mapStr2doubleVec& DoubleFeatureData,
+                       mapStr2Str& StringData);
 }
 #endif

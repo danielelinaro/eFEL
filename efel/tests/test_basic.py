@@ -1399,6 +1399,53 @@ def test_sag_ratio2():
         (voltage_base - minimum_voltage))
 
 
+def test_ADP_indices():
+    """basic: Test ADP_indices"""
+
+    import efel
+    efel.reset()
+
+    stim_start = 650.0
+    stim_end = 900.0
+
+    time = efel.io.load_fragment('%s#col=1' % meanfrequency1_url)
+    voltage = efel.io.load_fragment('%s#col=2' % meanfrequency1_url)
+    trace = {}
+
+    trace['T'] = time
+    trace['V'] = voltage
+    trace['stim_start'] = [stim_start]
+    trace['stim_end'] = [stim_end]
+
+    features = ['peak_indices','AP_begin_indices','AP_end_indices','min_AHP_indices','ADP_indices']
+
+    feature_values = \
+        efel.getFeatureValues(
+            [trace],
+            features, raise_warnings=False)
+
+    peak_indices = feature_values[0]['peak_indices']
+    AP_begin_indices = feature_values[0]['AP_begin_indices']
+    AP_end_indices = feature_values[0]['AP_end_indices']
+    min_AHP_indices = feature_values[0]['min_AHP_indices']
+    ADP_indices = feature_values[0]['ADP_indices']
+    print(time[peak_indices])
+    print(time[AP_begin_indices])
+    print(time[AP_end_indices])
+    print(time[min_AHP_indices])
+    print(ADP_indices)
+    
+    import matplotlib.pyplot as plt
+    plt.plot(time,voltage,'k')
+    plt.plot(time[peak_indices],voltage[peak_indices],'ro')
+    plt.plot(time[AP_begin_indices],voltage[AP_begin_indices],'go')
+    plt.plot(time[AP_end_indices],voltage[AP_end_indices],'bo')
+    plt.plot(time[min_AHP_indices],voltage[min_AHP_indices],'mo')
+    plt.show()
+    
+    nt.assert_equal(len(peak_indices), 5)
+
+
 def test_ohmic_input_resistance_vb_ssse():
     """basic: Test ohmic_input_resistance_vb_ssse"""
 

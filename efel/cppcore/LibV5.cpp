@@ -2772,3 +2772,16 @@ int LibV5::sag_ratio2(mapStr2intVec& IntFeatureData,
   return retVal;
 }
 
+int LibV5::ADP_indices(mapStr2intVec& IntFeatureData,
+                        mapStr2doubleVec& DoubleFeatureData,
+                        mapStr2Str& StringData) {
+  int retVal;
+  vector<int> ADP_indices;
+  ADP_indices.push_back(100);
+  ADP_indices.push_back(200);
+  ADP_indices.push_back(300);
+  setIntVec(IntFeatureData, StringData, "ADP_indices", ADP_indices);
+  retVal = ADP_indices.size();
+  return retVal;
+}
+

@@ -242,6 +242,7 @@ void cFeature::fillfeaturetypes() {
   featuretypes["sag_amplitude"] = "double";
   featuretypes["sag_ratio1"] = "double";
   featuretypes["sag_ratio2"] = "double";
+  featuretypes["ADP_indices"] = "int";
 
   // end of feature types
 }
